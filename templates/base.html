@@ -82,7 +82,7 @@
             <nav class="main-nav">
                 <ul>
                     <li class="active"><a href="{{ url_for('index') }}">Home</a></li>
-                    <li><a href="#symptom-checker">Symptom Checker</a></li>
+                    <li><a href="{{ url_for('disease_prediction') }}">Symptom Checker</a></li>
                     <li><a href="{{ url_for('diet_suggestion') }}">Personalized Diet</a></li>
                     <li><a href="#care-near-you">Care Near You</a></li>
                     <li><a href="{{ url_for('quick_relief') }}">Quick Relief</a></li>
@@ -152,7 +152,7 @@
                     <h3>Quick Links</h3>
                     <ul>
                         <li><a href="{{ url_for('index') }}">Home</a></li>
-                        <li><a href="#symptom-checker">Symptom Checker</a></li>
+                        <li><a href="{{ url_for('disease_prediction') }}">Symptom Checker</a></li>
                         <li><a href="{{ url_for('diet_suggestion') }}">Personalized Diet</a></li>
                         <li><a href="#care-near-you">Care Near You</a></li>
                     </ul>

@@ -5,6 +5,25 @@ const navLinks = document.querySelectorAll('.main-nav a');
 const userProfileToggle = document.getElementById('user-profile-toggle');
 const userDropdown = document.getElementById('user-dropdown');
 
+// Force hero and features sections to be visible
+document.addEventListener('DOMContentLoaded', function() {
+    // Force hero section to be visible
+    const heroSection = document.querySelector('.hero');
+    const featuresSection = document.getElementById('features');
+    
+    if (heroSection) {
+        console.log('Found hero section, ensuring visibility');
+        heroSection.style.display = 'flex';
+        heroSection.style.visibility = 'visible';
+    }
+    
+    if (featuresSection) {
+        console.log('Found features section, ensuring visibility');
+        featuresSection.style.display = 'block';
+        featuresSection.style.visibility = 'visible';
+    }
+});
+
 // Toggle mobile menu
 mobileMenuToggle.addEventListener('click', () => {
     mobileMenuToggle.classList.toggle('active');
@@ -41,20 +60,24 @@ navLinks.forEach(link => {
 });
 
 // Toggle user dropdown
-userProfileToggle.addEventListener('click', (e) => {
-    e.stopPropagation();
-    userProfileToggle.classList.toggle('active');
-    userDropdown.classList.toggle('active');
-    
-    // Toggle ARIA attributes for accessibility
-    const expanded = userProfileToggle.getAttribute('aria-expanded') === 'true' || false;
-    userProfileToggle.setAttribute('aria-expanded', !expanded);
-    userDropdown.setAttribute('aria-hidden', expanded);
-});
+if (userProfileToggle) {
+    userProfileToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        userProfileToggle.classList.toggle('active');
+        userDropdown.classList.toggle('active');
+        
+        // Toggle ARIA attributes for accessibility
+        const expanded = userProfileToggle.getAttribute('aria-expanded') === 'true' || false;
+        userProfileToggle.setAttribute('aria-expanded', !expanded);
+        userDropdown.setAttribute('aria-hidden', expanded);
+    });
+}
 
 // Close user dropdown when clicking outside
 document.addEventListener('click', (e) => {
-    if (!userProfileToggle.contains(e.target) && !userDropdown.contains(e.target)) {
+    if (userProfileToggle && userDropdown && 
+        !userProfileToggle.contains(e.target) && 
+        !userDropdown.contains(e.target)) {
         userProfileToggle.classList.remove('active');
         userDropdown.classList.remove('active');
         userProfileToggle.setAttribute('aria-expanded', 'false');
@@ -128,25 +151,30 @@ mobileMenuToggle.addEventListener('keydown', (e) => {
 });
 
 // Keyboard accessibility for user dropdown
-userProfileToggle.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        userProfileToggle.click();
-    }
-});
+if (userProfileToggle) {
+    userProfileToggle.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            userProfileToggle.click();
+        }
+    });
+}
 
 // Close dropdowns when ESC key is pressed
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
         mainNav.classList.remove('active');
         mobileMenuToggle.classList.remove('active');
-        userProfileToggle.classList.remove('active');
-        userDropdown.classList.remove('active');
+        
+        if (userProfileToggle && userDropdown) {
+            userProfileToggle.classList.remove('active');
+            userDropdown.classList.remove('active');
+            userProfileToggle.setAttribute('aria-expanded', 'false');
+            userDropdown.setAttribute('aria-hidden', 'true');
+        }
         
         mobileMenuToggle.setAttribute('aria-expanded', 'false');
         mainNav.setAttribute('aria-hidden', 'true');
-        userProfileToggle.setAttribute('aria-expanded', 'false');
-        userDropdown.setAttribute('aria-hidden', 'true');
     }
 });
 
@@ -165,8 +193,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Set initial ARIA attributes
     mobileMenuToggle.setAttribute('aria-expanded', 'false');
     mainNav.setAttribute('aria-hidden', 'true');
-    userProfileToggle.setAttribute('aria-expanded', 'false');
-    userDropdown.setAttribute('aria-hidden', 'true');
+    
+    if (userProfileToggle && userDropdown) {
+        userProfileToggle.setAttribute('aria-expanded', 'false');
+        userDropdown.setAttribute('aria-hidden', 'true');
+    }
     
     // Run animations on initial load
     animateOnScroll();
@@ -179,4 +210,28 @@ document.addEventListener('DOMContentLoaded', () => {
 window.addEventListener('scroll', () => {
     setActiveNavItem();
     animateOnScroll();
+});
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    // Skip links that contain Flask URL patterns
+    if (anchor.getAttribute('href').includes('{{') || 
+        anchor.getAttribute('href').includes('}}')) {
+        return;
+    }
+    
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        
+        if (targetElement) {
+            window.scrollTo({
+                top: targetElement.offsetTop - 80, // Adjust for header height
+                behavior: 'smooth'
+            });
+        }
+    });
 });
