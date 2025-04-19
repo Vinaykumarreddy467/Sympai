@@ -1,0 +1,483 @@
+/* Base Styles with Dark Theme */
+:root {
+    /* Background Colors */
+    --bg-primary: #121212;         /* Very dark background */
+    --bg-secondary: #1e1e1e;       /* Slightly lighter dark background */
+    --bg-tertiary: #252525;        /* Darker gray background */
+    --bg-dropdown: #2d2d2d;        /* Even lighter dark background for dropdowns */
+    
+    /* Text Colors */
+    --text-primary: #ffffff;       /* White text */
+    --text-secondary: #b3b3b3;     /* Light gray text */
+    
+    /* Accent Colors */
+    --accent-primary: #00e5ff;     /* Bright cyan-blue */
+    --accent-secondary: #f906ac;   /* Vibrant purple */
+    --accent-tertiary: #00b894;    /* Teal color */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--text-primary);
+    background-color: var(--bg-primary);
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--bg-tertiary);
+}
+
+header h1 {
+    color: var(--accent-primary);
+    margin-bottom: 10px;
+}
+
+header p {
+    color: var(--text-secondary);
+}
+
+h2 {
+    color: var(--accent-primary);
+    margin-bottom: 20px;
+}
+
+h3 {
+    color: var(--text-primary);
+    margin-bottom: 15px;
+}
+
+/* Form Styles */
+.form-group {
+    background-color: var(--bg-secondary);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+}
+
+.form-field {
+    flex: 1;
+    min-width: 200px;
+    margin-right: 15px;
+    margin-bottom: 15px;
+}
+
+.form-field:last-child {
+    margin-right: 0;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--bg-tertiary);
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: var(--bg-dropdown);
+    color: var(--text-primary);
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+}
+
+.btn-primary {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background-color: var(--accent-primary);
+    color: var(--bg-primary);
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: var(--accent-tertiary);
+}
+
+.btn-secondary {
+    padding: 8px 16px;
+    background-color: var(--bg-tertiary);
+    color: var(--text-primary);
+    border: 1px solid var(--bg-dropdown);
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-secondary:hover {
+    background-color: var(--bg-dropdown);
+}
+
+/* Results Section */
+.hidden {
+    display: none;
+}
+
+.results-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.btn-group {
+    display: flex;
+    gap: 10px;
+}
+
+.bmi-info {
+    background-color: var(--bg-secondary);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.bmi-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.bmi-item {
+    flex: 1;
+    min-width: 150px;
+}
+
+.bmi-label {
+    font-weight: 600;
+    color: var(--text-secondary);
+    display: block;
+    margin-bottom: 5px;
+}
+
+.bmi-value {
+    font-size: 18px;
+    color: var(--accent-primary);
+}
+
+/* Meal Plan Section */
+.meal-plan-section, .tips-section, .recipe-section {
+    background-color: var(--bg-secondary);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.cuisine-toggle {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.cuisine-btn {
+    padding: 8px 16px;
+    background-color: var(--bg-tertiary);
+    color: var(--text-primary);
+    border: 1px solid var(--bg-dropdown);
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.cuisine-btn.active {
+    background-color: var(--accent-primary);
+    color: var(--bg-primary);
+    border-color: var(--accent-primary);
+}
+
+.meal-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.meal-table th, .meal-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--bg-tertiary);
+}
+
+.meal-table th {
+    background-color: var(--bg-tertiary);
+    font-weight: 600;
+    color: var(--accent-primary);
+}
+
+.meal-alternatives {
+    position: relative;
+    display: inline-block;
+}
+
+.alternatives-btn {
+    padding: 6px 12px;
+    background-color: var(--bg-tertiary);
+    border: 1px solid var(--bg-dropdown);
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    color: var(--text-primary);
+}
+
+.alternatives-content {
+    display: none;
+    position: absolute;
+    background-color: var(--bg-dropdown);
+    min-width: 200px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    z-index: 1;
+    border-radius: 4px;
+    padding: 10px;
+    color: var(--text-primary);
+}
+
+.alternatives-content p {
+    padding: 8px;
+    margin: 0;
+    border-bottom: 1px solid var(--bg-tertiary);
+}
+
+.alternatives-content p:last-child {
+    border-bottom: none;
+}
+
+.meal-alternatives:hover .alternatives-content {
+    display: block;
+}
+
+/* Tips Section */
+#tipsList {
+    padding-left: 20px;
+    color: var(--text-secondary);
+}
+
+#tipsList li {
+    margin-bottom: 10px;
+}
+
+/* Recipe Section */
+.recipe-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.recipe-card {
+    border: 1px solid var(--bg-tertiary);
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: var(--bg-tertiary);
+}
+
+.recipe-card h4 {
+    padding: 15px;
+    background-color: var(--bg-tertiary);
+    margin: 0;
+    color: var(--accent-primary);
+}
+
+.recipe-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.recipe-meta {
+    display: flex;
+    padding: 10px 15px;
+    background-color: var(--bg-tertiary);
+    border-bottom: 1px solid var(--bg-dropdown);
+}
+
+.difficulty {
+    margin-right: 15px;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.easy {
+    background-color: rgba(0, 184, 148, 0.2);
+    color: var(--accent-tertiary);
+}
+
+.medium {
+    background-color: rgba(0, 229, 255, 0.2);
+    color: var(--accent-primary);
+}
+
+.hard {
+    background-color: rgba(249, 6, 172, 0.2);
+    color: var(--accent-secondary);
+}
+
+.time {
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.ingredients, .instructions {
+    padding: 15px;
+}
+
+.ingredients h5, .instructions h5 {
+    margin-bottom: 10px;
+    color: var(--accent-primary);
+}
+
+.ingredients ul, .instructions ol {
+    padding-left: 20px;
+    color: var(--text-secondary);
+}
+
+.ingredients li, .instructions li {
+    margin-bottom: 5px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .form-field {
+        flex: 100%;
+        margin-right: 0;
+    }
+    
+    .results-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .btn-group {
+        margin-top: 10px;
+    }
+    
+    .bmi-details {
+        flex-direction: column;
+    }
+    
+    .cuisine-toggle {
+        flex-wrap: wrap;
+    }
+    
+    .meal-table {
+        display: block;
+        overflow-x: auto;
+    }
+}
+
+/* Print Styles */
+@media print {
+    body {
+        font-size: 12pt;
+        background-color: white;
+        color: black;
+    }
+    
+    .container {
+        width: 100%;
+        max-width: none;
+    }
+    
+    header, .btn-group, #newRecipeBtn, .cuisine-toggle {
+        display: none;
+    }
+    
+    .meal-plan-section, .tips-section, .recipe-section, .bmi-info {
+        break-inside: avoid;
+        page-break-inside: avoid;
+        margin-bottom: 20pt;
+        box-shadow: none;
+        border: 1pt solid #ddd;
+        background-color: white;
+    }
+    
+    .meal-table th, .meal-table td {
+        padding: 8pt;
+        color: black;
+        border-bottom: 1pt solid #ddd;
+    }
+    
+    .meal-table th {
+        background-color: #f8f9fa;
+    }
+    
+    .alternatives-btn {
+        display: none;
+    }
+    
+    .alternatives-content {
+        display: block;
+        position: static;
+        box-shadow: none;
+        padding: 0;
+        background-color: white;
+        color: black;
+    }
+    
+    .recipe-card {
+        background-color: white;
+        border: 1pt solid #ddd;
+    }
+    
+    .recipe-card h4, .ingredients h5, .instructions h5 {
+        color: black;
+        background-color: #f8f9fa;
+    }
+    
+    .recipe-meta {
+        background-color: white;
+        border-bottom: 1pt solid #ddd;
+    }
+    
+    .ingredients ul, .instructions ol, #tipsList {
+        color: black;
+    }
+    
+    .recipe-card img {
+        max-height: 200pt;
+    }
+    
+    .bmi-value, h2, h3 {
+        color: black;
+    }
+    
+    .bmi-label {
+        color: #555;
+    }
+}

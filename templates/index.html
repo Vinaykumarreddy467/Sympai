@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SympAI 🩺 - Your AI Health Assistant</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header with Navigation -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>SympAI 🩺</h1>
+            </div>
+            
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                <span class="hamburger"></span>
+            </button>
+            
+            <nav class="main-nav">
+                <ul>
+                    <li class="active"><a href="#home">Home</a></li>
+                    <li><a href="#symptom-checker">Symptom Checker</a></li>
+                    <li><a href="{{ url_for('diet_suggestion') }}">Personalized Diet</a></li>
+                    <li><a href="#care-near-you">Care Near You</a></li>
+                    <li><a href="{{ url_for('quick_relief') }}">Quick Relief</a></li>
+                </ul>
+            </nav>
+            
+            <!-- User account section -->
+            <div class="user-account">
+                {% if current_user.is_authenticated %}
+                <div class="user-profile" id="user-profile-toggle">
+                    <img src="https://ui-avatars.com/api/?name={{ current_user.username }}&background=0D8ABC&color=fff" alt="User" class="user-avatar">
+                    <span class="user-name">{{ current_user.username }}</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="user-dropdown" id="user-dropdown">
+                    <div class="dropdown-header">
+                        <img src="https://ui-avatars.com/api/?name={{ current_user.username }}&background=0D8ABC&color=fff" alt="User" class="dropdown-avatar">
+                        <div class="dropdown-user-info">
+                            <h4>{{ current_user.username }}</h4>
+                            <p>{{ current_user.email }}</p>
+                        </div>
+                    </div>
+                    <ul class="dropdown-menu">
+                        <li><a href="#profile"><i class="fas fa-user"></i> My Profile</a></li>
+                        <li><a href="#history"><i class="fas fa-history"></i> Health History</a></li>
+                        <li><a href="#settings"><i class="fas fa-cog"></i> Settings</a></li>
+                        <li class="divider"></li>
+                        <li><a href="{{ url_for('logout') }}" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                    </ul>
+                </div>
+                {% else %}
+                <div class="auth-buttons">
+                    <a href="{{ url_for('login') }}" class="btn btn-outline">Login</a>
+                    <a href="{{ url_for('register') }}" class="btn btn-primary">Register</a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Home Section -->
+        <section id="home" class="home-section">
+            <!-- Hero Section -->
+            <div class="container">
+                <div class="hero">
+                    <div class="hero-content">
+                        <h1 class="tagline">Smart Care for a Healthier Future</h1>
+                        <p class="welcome-message">
+                            Welcome to SympAI 🩺 — your intelligent companion for personalized health guidance.
+                            Leveraging the power of AI, we help you decode symptoms, discover balanced diets, 
+                            locate nearby healthcare, and find fast relief from common ailments.
+                        </p>
+                        <div class="cta-buttons">
+                            <a href="#features" class="btn btn-outline">
+                                <i class="fas fa-info-circle"></i> Learn More
+                            </a>
+                        </div>
+                    </div>
+                    <div class="hero-image">
+                        <video src="{{ url_for('static', filename='videos/DNA.mp4') }}" autoplay muted loop playsinline></video>
+                    </div>                    
+                </div>
+            </div>
+
+            <!-- Features Section -->
+            <div id="features" class="features">
+                <div class="container">
+                    <h2 class="section-title">💡 Core Benefits</h2>
+                    <div class="feature-cards">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-search-plus"></i>
+                            </div>
+                            <h3>🔍 Symptom Checker</h3>
+                            <p>Quickly assess your symptoms and get predictive insights from multiple AI models. Early awareness leads to better health decisions.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-utensils"></i>
+                            </div>
+                            <h3>🥗 Personalized Diet</h3>
+                            <p>Receive expert-backed nutrition tips tailored to your condition or lifestyle. Eat smart, feel better.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <h3>🏥 Care Near You</h3>
+                            <p>Locate trusted hospitals, clinics, and pharmacies around you — all in one tap.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-pills"></i>
+                            </div>
+                            <h3>💊 Quick Relief</h3>
+                            <p>Get guidance on over-the-counter medications and remedies for everyday infections.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Overview Section -->
+        <section id="overview" class="section">
+            <div class="container">
+                <h2 class="section-title">🧠 Driven by Intelligence & Designed for Wellness 🌿</h2>
+                <p>
+                    SympAI is more than just a symptom checker — it's your intelligent partner in health. By blending cutting-edge AI, trusted medical data, and user-first design, SympAI delivers smart, personalized guidance to help you make informed health decisions anytime, anywhere.
+                </p>
+                <p>
+                    Whether you're exploring a new symptom, planning a healthier diet, or searching for nearby care options, SympAI makes the journey simple and stress-free. Everything is designed with you in mind — fast results, clear answers, and complete privacy.
+                </p>
+        
+                <div class="overview-highlights">
+                    <div class="highlight">
+                        <h3>🤖 AI-Powered Insights</h3>
+                        <p>Multiple AI models work together to interpret your inputs and provide reliable, medically-informed suggestions.</p>
+                    </div>
+                    <div class="highlight">
+                        <h3>🧭 Simple, Guided Experience</h3>
+                        <p>Easy-to-answer questions and a user-friendly interface make navigating your health smooth and stress-free.</p>
+                    </div>
+                    <div class="highlight">
+                        <h3>🔒 Your Privacy, Always Respected</h3>
+                        <p>SympAI is built with data privacy at its core. Your health queries remain confidential — no tracking, no personal data storage.</p>
+                    </div>
+                </div>
+            </div>
+        </section>        
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>SympAI 🩺</h2>
+                    <p>Your AI Health Assistant</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#symptom-checker">Symptom Checker</a></li>
+                        <li><a href="{{ url_for('diet_suggestion') }}">Personalized Diet</a></li>
+                        <li><a href="#care-near-you">Care Near You</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h3>Connect With Us</h3>
+                    <div class="social-icons">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 SympAI. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
