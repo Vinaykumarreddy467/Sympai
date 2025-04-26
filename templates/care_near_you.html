@@ -1,0 +1,163 @@
+{% extends "base.html" %}
+
+{% block additional_styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/care_near_you.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="section-header">
+        <h1>Find Healthcare Near You</h1>
+        <p>Locate hospitals and healthcare facilities in your area for professional medical assistance</p>
+    </div>
+
+    <div class="info-box">
+        <h3><i class="fas fa-info-circle"></i> How This Works</h3>
+        <p>This feature helps you find hospitals and clinics near your current location:</p>
+        <ul>
+            <li>Click the "Find Hospitals Near Me" button to use your current location</li>
+            <li>We'll search for healthcare facilities within approximately 2 km</li>
+            <li>Results are sorted by distance, with the closest facilities shown first</li>
+            <li>Click "Get Directions" to open Google Maps for navigation</li>
+        </ul>
+        <p><strong>Note:</strong> You'll need to allow location access when prompted by your browser.</p>
+    </div>
+
+    <div class="action-panel">
+        <button id="getHospitalsBtn" class="primary-button" onclick="getLocation()">
+            <i class="fas fa-search-location"></i> Find Hospitals Near Me
+        </button>
+        <div id="loader" class="loader"></div>
+    </div>
+
+    <div id="hospitals" class="card-container"></div>
+</div>
+{% endblock %}
+
+{% block additional_scripts %}
+<script>
+    function getLocation() {
+        console.log("Initiating location request...");
+        const button = document.getElementById('getHospitalsBtn');
+        const loader = document.getElementById('loader');
+        button.disabled = true;
+        loader.style.display = 'block';
+
+        // Check if the page is served over HTTPS or localhost (geolocation requirement)
+        if (!window.isSecureContext) {
+            console.error("Geolocation requires a secure context (HTTPS or localhost).");
+            alert("This feature requires a secure connection (HTTPS). Please try accessing the site via a secure URL.");
+            button.disabled = false;
+            loader.style.display = 'none';
+            return;
+        }
+
+        if (navigator.geolocation) {
+            console.log("Geolocation API supported. Requesting position...");
+            navigator.geolocation.getCurrentPosition(
+                sendPosition,
+                showError,
+                {
+                    enableHighAccuracy: true, // Prioritize accuracy
+                    timeout: 10000,           // 10-second timeout
+                    maximumAge: 0             // No cached position
+                }
+            );
+        } else {
+            console.error("Geolocation is not supported by this browser.");
+            alert("Geolocation is not supported by this browser. Please use a modern browser.");
+            button.disabled = false;
+            loader.style.display = 'none';
+        }
+    }
+
+    function sendPosition(position) {
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+        console.log(`Location acquired: lat=${lat}, lon=${lon}, accuracy=${position.coords.accuracy}m`);
+
+        fetch('/get_hospitals', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ lat: lat, lon: lon })
+        })
+        .then(response => {
+            console.log('Fetch response status:', response.status);
+            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+            return response.json();
+        })
+        .then(data => {
+            console.log('Received hospital data:', data);
+            if (data.error) throw new Error(data.error);
+            displayHospitals(data);
+        })
+        .catch(error => {
+            console.error('Error fetching hospitals:', error);
+            alert('Failed to retrieve hospitals: ' + error.message);
+        })
+        .finally(() => {
+            document.getElementById('getHospitalsBtn').disabled = false;
+            document.getElementById('loader').style.display = 'none';
+        });
+    }
+
+    function showError(error) {
+        let message;
+        switch(error.code) {
+            case error.PERMISSION_DENIED:
+                message = "Location access denied. Please allow location access in your browser settings.";
+                break;
+            case error.POSITION_UNAVAILABLE:
+                message = "Location information is unavailable. Ensure location services are enabled.";
+                break;
+            case error.TIMEOUT:
+                message = "Location request timed out. Please try again.";
+                break;
+            default:
+                message = "An unknown error occurred while retrieving location.";
+                break;
+        }
+        console.error('Geolocation error:', message, error);
+        alert(message);
+        document.getElementById('getHospitalsBtn').disabled = false;
+        document.getElementById('loader').style.display = 'none';
+    }
+
+    function displayHospitals(hospitals) {
+        console.log('Rendering', hospitals.length, 'hospitals');
+        const hospitalsDiv = document.getElementById('hospitals');
+        const loader = document.getElementById('loader');
+        hospitalsDiv.innerHTML = '';
+        loader.style.display = 'none';
+
+        if (hospitals.length === 0) {
+            console.log('No hospitals found');
+            hospitalsDiv.innerHTML = '<div class="no-results"><p>No hospitals or clinics found within 2 km. Try a different location or try again later.</p></div>';
+            return;
+        }
+
+        try {
+            hospitals.forEach((hospital, index) => {
+                console.log(`Rendering hospital ${index + 1}:`, hospital.name);
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <h3>${hospital.name}</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> ${hospital.address}</p>
+                    <p class="distance"><i class="fas fa-route"></i> Distance: ${hospital.distance.toFixed(2)} km</p>
+                    <a class="button" href="https://www.google.com/maps/search/?api=1&query=${hospital.lat},${hospital.lon}" target="_blank" rel="noopener noreferrer">
+                        <i class="fas fa-directions"></i> Get Directions
+                    </a>
+                `;
+                hospitalsDiv.appendChild(card);
+            });
+            console.log('Hospital rendering complete');
+        } catch (error) {
+            console.error('Error rendering hospitals:', error);
+            alert('Error displaying hospitals: ' + error.message);
+        }
+    }
+</script>
+{% endblock %}

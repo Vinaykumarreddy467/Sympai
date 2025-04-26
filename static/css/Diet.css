@@ -1,4 +1,10 @@
+<<<<<<< HEAD
 /* Base Styles with Dark Theme */
+=======
+/* Diet.css */
+/* Base Styles with Dark Theme */
+
+>>>>>>> a79d98c (sympAI-Project)
 :root {
     /* Background Colors */
     --bg-primary: #121212;         /* Very dark background */
@@ -94,24 +100,108 @@ label {
     color: var(--text-primary);
 }
 
+<<<<<<< HEAD
 input, select {
     width: 100%;
     padding: 10px;
     border: 1px solid var(--bg-tertiary);
     border-radius: 4px;
     font-size: 16px;
+=======
+/* Diet Planner Styles */
+
+/* Container */
+.diet-container {
+    max-width: 1000px;
+    margin: 40px auto 60px;
+    padding: 0 20px;
+}
+
+/* Page title and description */
+.page-title {
+    font-size: 2.2rem;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.page-description {
+    color: var(--text-secondary);
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 1.1rem;
+}
+
+/* Form Styles */
+#dietForm {
+    margin-bottom: 40px;
+}
+
+.form-group {
+    background-color: var(--bg-secondary);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.form-group h2 {
+    color: var(--text-primary);
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    border-bottom: 1px solid var(--bg-tertiary);
+    padding-bottom: 10px;
+}
+
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+    gap: 20px;
+}
+
+.form-field {
+    flex: 1;
+    min-width: 200px;
+}
+
+.form-field label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.form-field input, 
+.form-field select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--bg-tertiary);
+    border-radius: 6px;
+    font-size: 1rem;
+>>>>>>> a79d98c (sympAI-Project)
     background-color: var(--bg-dropdown);
     color: var(--text-primary);
 }
 
+<<<<<<< HEAD
 input:focus, select:focus {
     outline: none;
     border-color: var(--accent-primary);
+=======
+.form-field input:focus, 
+.form-field select:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+>>>>>>> a79d98c (sympAI-Project)
 }
 
 .btn-primary {
     display: block;
     width: 100%;
+<<<<<<< HEAD
     padding: 12px;
     background-color: var(--accent-primary);
     color: var(--bg-primary);
@@ -144,6 +234,36 @@ input:focus, select:focus {
 
 /* Results Section */
 .hidden {
+=======
+    max-width: 300px;
+    margin: 0 auto;
+    padding: 14px;
+    background-color: var(--accent-primary);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: var(--accent-secondary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Results Section */
+#results {
+    background-color: var(--bg-secondary);
+    border-radius: 8px;
+    padding: 25px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+#results.hidden {
+>>>>>>> a79d98c (sympAI-Project)
     display: none;
 }
 
@@ -151,7 +271,19 @@ input:focus, select:focus {
     display: flex;
     justify-content: space-between;
     align-items: center;
+<<<<<<< HEAD
     margin-bottom: 20px;
+=======
+    margin-bottom: 25px;
+    border-bottom: 1px solid var(--bg-tertiary);
+    padding-bottom: 15px;
+}
+
+.results-header h2 {
+    color: var(--text-primary);
+    margin: 0;
+    font-size: 1.8rem;
+>>>>>>> a79d98c (sympAI-Project)
 }
 
 .btn-group {
@@ -159,12 +291,44 @@ input:focus, select:focus {
     gap: 10px;
 }
 
+<<<<<<< HEAD
 .bmi-info {
     background-color: var(--bg-secondary);
     border-radius: 8px;
     padding: 20px;
     margin-bottom: 20px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+=======
+.btn-secondary {
+    padding: 10px 16px;
+    background-color: var(--bg-tertiary);
+    color: var(--text-primary);
+    border: none;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background-color: var(--bg-dropdown);
+    transform: translateY(-2px);
+}
+
+/* BMI Info Section */
+.bmi-info {
+    background-color: var(--bg-dropdown);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 25px;
+}
+
+.bmi-info h3 {
+    color: var(--text-primary);
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+>>>>>>> a79d98c (sympAI-Project)
 }
 
 .bmi-details {
@@ -179,13 +343,18 @@ input:focus, select:focus {
 }
 
 .bmi-label {
+<<<<<<< HEAD
     font-weight: 600;
+=======
+    font-weight: 500;
+>>>>>>> a79d98c (sympAI-Project)
     color: var(--text-secondary);
     display: block;
     margin-bottom: 5px;
 }
 
 .bmi-value {
+<<<<<<< HEAD
     font-size: 18px;
     color: var(--accent-primary);
 }
@@ -197,29 +366,69 @@ input:focus, select:focus {
     padding: 20px;
     margin-bottom: 20px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+=======
+    font-size: 1.2rem;
+    color: var(--accent-primary);
+    font-weight: 600;
+}
+
+/* Meal Plan Section */
+.meal-plan-section, 
+.tips-section, 
+.recipe-section {
+    background-color: var(--bg-dropdown);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 25px;
+}
+
+.meal-plan-section h3,
+.tips-section h3,
+.recipe-section h3 {
+    color: var(--text-primary);
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+>>>>>>> a79d98c (sympAI-Project)
 }
 
 .cuisine-toggle {
     display: flex;
     gap: 10px;
+<<<<<<< HEAD
     margin-bottom: 15px;
+=======
+    margin-bottom: 20px;
+>>>>>>> a79d98c (sympAI-Project)
 }
 
 .cuisine-btn {
     padding: 8px 16px;
     background-color: var(--bg-tertiary);
     color: var(--text-primary);
+<<<<<<< HEAD
     border: 1px solid var(--bg-dropdown);
     border-radius: 4px;
     font-size: 14px;
     cursor: pointer;
     transition: all 0.3s;
+=======
+    border: none;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+>>>>>>> a79d98c (sympAI-Project)
 }
 
 .cuisine-btn.active {
     background-color: var(--accent-primary);
+<<<<<<< HEAD
     color: var(--bg-primary);
     border-color: var(--accent-primary);
+=======
+    color: white;
+>>>>>>> a79d98c (sympAI-Project)
 }
 
 .meal-table {
@@ -227,8 +436,14 @@ input:focus, select:focus {
     border-collapse: collapse;
 }
 
+<<<<<<< HEAD
 .meal-table th, .meal-table td {
     padding: 12px;
+=======
+.meal-table th, 
+.meal-table td {
+    padding: 12px 15px;
+>>>>>>> a79d98c (sympAI-Project)
     text-align: left;
     border-bottom: 1px solid var(--bg-tertiary);
 }
@@ -236,7 +451,15 @@ input:focus, select:focus {
 .meal-table th {
     background-color: var(--bg-tertiary);
     font-weight: 600;
+<<<<<<< HEAD
     color: var(--accent-primary);
+=======
+    color: var(--text-primary);
+}
+
+.meal-table tr:last-child td {
+    border-bottom: none;
+>>>>>>> a79d98c (sympAI-Project)
 }
 
 .meal-alternatives {
@@ -247,10 +470,17 @@ input:focus, select:focus {
 .alternatives-btn {
     padding: 6px 12px;
     background-color: var(--bg-tertiary);
+<<<<<<< HEAD
     border: 1px solid var(--bg-dropdown);
     border-radius: 4px;
     cursor: pointer;
     font-size: 12px;
+=======
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+>>>>>>> a79d98c (sympAI-Project)
     color: var(--text-primary);
 }
 
@@ -353,11 +583,21 @@ input:focus, select:focus {
     color: var(--text-secondary);
 }
 
+<<<<<<< HEAD
 .ingredients, .instructions {
     padding: 15px;
 }
 
 .ingredients h5, .instructions h5 {
+=======
+.ingredients, 
+.instructions {
+    padding: 15px;
+}
+
+.ingredients h5, 
+.instructions h5 {
+>>>>>>> a79d98c (sympAI-Project)
     margin-bottom: 10px;
     color: var(--accent-primary);
 }

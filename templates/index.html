@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -194,3 +195,102 @@
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>
+=======
+{% extends "base.html" %}
+
+{% block additional_styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+{% endblock %}
+
+{% block content %}
+<!-- Home Section -->
+<section id="home" class="home-section">
+    <!-- Hero Section -->
+    <div class="container">
+        <div class="hero">
+            <div class="hero-content">
+                <h1 class="tagline">Smart Care for a Healthier Future</h1>
+                <p class="welcome-message">
+                    Welcome to SympAI 🩺 — your intelligent companion for personalized health guidance.
+                    Leveraging the power of AI, we help you decode symptoms, discover balanced diets, 
+                    locate nearby healthcare, and find fast relief from common ailments.
+                </p>
+                <div class="cta-buttons">
+                    <a href="#features" class="btn btn-outline">
+                        <i class="fas fa-info-circle"></i> Learn More
+                    </a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <video src="{{ url_for('static', filename='videos/DNA.mp4') }}" autoplay muted loop playsinline></video>
+            </div>                    
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <div id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">💡 Core Benefits</h2>
+            <div class="feature-cards">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                    <h3>🔍 Symptom Checker</h3>
+                    <p>Quickly assess your symptoms and get predictive insights from multiple AI models. Early awareness leads to better health decisions.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3>🥗 Personalized Diet</h3>
+                    <p>Receive expert-backed nutrition tips tailored to your condition or lifestyle. Eat smart, feel better.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3>🏥 Care Near You</h3>
+                    <p>Locate trusted hospitals, clinics, and pharmacies around you — all in one tap.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-pills"></i>
+                    </div>
+                    <h3>💊 Quick Relief</h3>
+                    <p>Get guidance on over-the-counter medications and remedies for everyday infections.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Overview Section -->
+<section id="overview" class="section">
+    <div class="container">
+        <h2 class="section-title">🧠 Driven by Intelligence & Designed for Wellness 🌿</h2>
+        <p>
+            SympAI is more than just a symptom checker — it's your intelligent partner in health. By blending cutting-edge AI, trusted medical data, and user-first design, SympAI delivers smart, personalized guidance to help you make informed health decisions anytime, anywhere.
+        </p>
+        <p>
+            Whether you're exploring a new symptom, planning a healthier diet, or searching for nearby care options, SympAI makes the journey simple and stress-free. Everything is designed with you in mind — fast results, clear answers, and complete privacy.
+        </p>
+
+        <div class="overview-highlights">
+            <div class="highlight">
+                <h3>🤖 AI-Powered Insights</h3>
+                <p>Multiple AI models work together to interpret your inputs and provide reliable, medically-informed suggestions.</p>
+            </div>
+            <div class="highlight">
+                <h3>🧭 Simple, Guided Experience</h3>
+                <p>Easy-to-answer questions and a user-friendly interface make navigating your health smooth and stress-free.</p>
+            </div>
+            <div class="highlight">
+                <h3>🔒 Your Privacy, Always Respected</h3>
+                <p>SympAI is built with data privacy at its core. Your health queries remain confidential — no tracking, no personal data storage.</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+>>>>>>> a79d98c (sympAI-Project)

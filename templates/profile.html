@@ -1,0 +1,221 @@
+{% extends "base.html" %}
+
+{% block additional_styles %}
+<style>
+    .profile-container {
+        max-width: 800px;
+        margin: 40px auto;
+        padding: 30px;
+        background-color: var(--bg-secondary);
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .profile-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 30px;
+    }
+    
+    .profile-avatar {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        margin-right: 20px;
+        object-fit: cover;
+    }
+    
+    .profile-title h1 {
+        margin: 0;
+        font-size: 1.8rem;
+        color: var(--text-primary);
+    }
+    
+    .profile-title p {
+        margin: 5px 0 0;
+        color: var(--text-secondary);
+    }
+    
+    .profile-form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+    
+    .form-group {
+        margin-bottom: 20px;
+    }
+    
+    .form-group.full-width {
+        grid-column: span 2;
+    }
+    
+    .form-control-label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+        color: var(--text-primary);
+    }
+    
+    .form-control {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid var(--bg-tertiary);
+        border-radius: 6px;
+        background-color: var(--bg-dropdown);
+        color: var(--text-primary);
+        font-size: 1rem;
+    }
+    
+    textarea.form-control {
+        min-height: 100px;
+        resize: vertical;
+    }
+    
+    .btn-container {
+        grid-column: span 2;
+        margin-top: 20px;
+        text-align: right;
+    }
+    
+    .btn-update {
+        padding: 12px 24px;
+        background-color: var(--accent-primary);
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    
+    .btn-update:hover {
+        background-color: var(--accent-secondary);
+    }
+    
+    @media (max-width: 768px) {
+        .profile-form {
+            grid-template-columns: 1fr;
+        }
+        
+        .form-group.full-width {
+            grid-column: span 1;
+        }
+        
+        .btn-container {
+            grid-column: span 1;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="profile-container">
+    <div class="profile-header">
+        <img src="https://ui-avatars.com/api/?name={{ current_user.username }}&background=0D8ABC&color=fff&size=100" alt="{{ current_user.username }}" class="profile-avatar">
+        <div class="profile-title">
+            <h1>My Profile</h1>
+            <p>Manage your personal health information</p>
+        </div>
+    </div>
+    
+    <form method="POST" action="{{ url_for('profile') }}" class="profile-form">
+        {{ form.hidden_tag() }}
+        
+        <div class="form-group">
+            {{ form.first_name.label(class="form-control-label") }}
+            {{ form.first_name(class="form-control") }}
+            {% if form.first_name.errors %}
+                {% for error in form.first_name.errors %}
+                    <span class="error-message">{{ error }}</span>
+                {% endfor %}
+            {% endif %}
+        </div>
+        
+        <div class="form-group">
+            {{ form.last_name.label(class="form-control-label") }}
+            {{ form.last_name(class="form-control") }}
+            {% if form.last_name.errors %}
+                {% for error in form.last_name.errors %}
+                    <span class="error-message">{{ error }}</span>
+                {% endfor %}
+            {% endif %}
+        </div>
+        
+        <div class="form-group">
+            {{ form.date_of_birth.label(class="form-control-label") }}
+            {{ form.date_of_birth(class="form-control", type="date") }}
+            {% if form.date_of_birth.errors %}
+                {% for error in form.date_of_birth.errors %}
+                    <span class="error-message">{{ error }}</span>
+                {% endfor %}
+            {% endif %}
+        </div>
+        
+        <div class="form-group">
+            {{ form.gender.label(class="form-control-label") }}
+            {{ form.gender(class="form-control") }}
+            {% if form.gender.errors %}
+                {% for error in form.gender.errors %}
+                    <span class="error-message">{{ error }}</span>
+                {% endfor %}
+            {% endif %}
+        </div>
+        
+        <div class="form-group">
+            {{ form.height.label(class="form-control-label") }}
+            {{ form.height(class="form-control", placeholder="e.g., 175") }}
+            {% if form.height.errors %}
+                {% for error in form.height.errors %}
+                    <span class="error-message">{{ error }}</span>
+                {% endfor %}
+            {% endif %}
+        </div>
+        
+        <div class="form-group">
+            {{ form.weight.label(class="form-control-label") }}
+            {{ form.weight(class="form-control", placeholder="e.g., 70") }}
+            {% if form.weight.errors %}
+                {% for error in form.weight.errors %}
+                    <span class="error-message">{{ error }}</span>
+                {% endfor %}
+            {% endif %}
+        </div>
+        
+        <div class="form-group">
+            {{ form.blood_type.label(class="form-control-label") }}
+            {{ form.blood_type(class="form-control") }}
+            {% if form.blood_type.errors %}
+                {% for error in form.blood_type.errors %}
+                    <span class="error-message">{{ error }}</span>
+                {% endfor %}
+            {% endif %}
+        </div>
+        
+        <div class="form-group full-width">
+            {{ form.allergies.label(class="form-control-label") }}
+            {{ form.allergies(class="form-control", placeholder="List any allergies you have...") }}
+            {% if form.allergies.errors %}
+                {% for error in form.allergies.errors %}
+                    <span class="error-message">{{ error }}</span>
+                {% endfor %}
+            {% endif %}
+        </div>
+        
+        <div class="form-group full-width">
+            {{ form.medical_conditions.label(class="form-control-label") }}
+            {{ form.medical_conditions(class="form-control", placeholder="List any medical conditions...") }}
+            {% if form.medical_conditions.errors %}
+                {% for error in form.medical_conditions.errors %}
+                    <span class="error-message">{{ error }}</span>
+                {% endfor %}
+            {% endif %}
+        </div>
+        
+        <div class="btn-container">
+            {{ form.submit(class="btn-update") }}
+        </div>
+    </form>
+</div>
+{% endblock %}

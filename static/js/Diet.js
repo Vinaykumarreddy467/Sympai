@@ -889,6 +889,70 @@ document.addEventListener('DOMContentLoaded', function() {
         // Show results section
         dietForm.classList.add('hidden');
         resultsSection.classList.remove('hidden');
+<<<<<<< HEAD
+=======
+
+        // Add this at the end of the form submission handler in Diet.js
+// Right after: resultsSection.classList.remove('hidden');
+
+// If user is logged in, add save button functionality
+if (document.querySelector('.user-profile')) {
+    // Add a save button to the results header
+    const btnGroup = document.querySelector('.btn-group');
+    const saveBtn = document.createElement('button');
+    saveBtn.id = 'saveBtn';
+    saveBtn.className = 'btn-secondary';
+    saveBtn.innerHTML = '<i class="fas fa-save"></i> Save Plan';
+    btnGroup.insertBefore(saveBtn, resetBtn);
+    
+    // Add save functionality
+    saveBtn.addEventListener('click', function() {
+        // Collect data to save
+        const dietData = {
+            title: document.getElementById('planTitle').textContent,
+            bmi: {
+                value: document.getElementById('bmiValue').textContent,
+                category: {
+                    name: document.getElementById('bmiCategory').textContent,
+                    calories: document.getElementById('calorieRange').textContent
+                }
+            },
+            goal: goal,
+            fitnessLevel: fitnessLevel,
+            activityLevel: activityLevel,
+            cuisinePreference: cuisinePreference,
+            gender: gender,
+            age: age,
+            height: height,
+            weight: weight
+        };
+        
+        // Send data to server
+        fetch('/save-diet-plan', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(dietData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert(data.message);
+                saveBtn.disabled = true;
+                saveBtn.innerHTML = '<i class="fas fa-check"></i> Saved';
+            } else {
+                alert('Error: ' + data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Failed to save diet plan. Please try again.');
+        });
+    });
+}
+
+>>>>>>> a79d98c (sympAI-Project)
     });
     
     // Reset button handler

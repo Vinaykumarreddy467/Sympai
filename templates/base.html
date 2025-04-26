@@ -81,6 +81,7 @@
             
             <nav class="main-nav">
                 <ul>
+<<<<<<< HEAD
                     <li class="active"><a href="{{ url_for('index') }}">Home</a></li>
                     <li><a href="{{ url_for('disease_prediction') }}">Symptom Checker</a></li>
                     <li><a href="{{ url_for('diet_suggestion') }}">Personalized Diet</a></li>
@@ -89,6 +90,16 @@
                 </ul>
             </nav>
             
+=======
+                    <li class="{{ is_active_page('index') }}"><a href="{{ url_for('index') }}">Home</a></li>
+                    <li class="{{ is_active_page('disease_prediction') }}"><a href="{{ url_for('disease_prediction') }}">Symptom Checker</a></li>
+                    <li class="{{ is_active_page('diet_suggestion') }}"><a href="{{ url_for('diet_suggestion') }}">Personalized Diet</a></li>
+                    <li class="{{ is_active_page('care_near_you') }}"><a href="{{ url_for('care_near_you') }}">Care Near You</a></li>
+                    <li class="{{ is_active_page('quick_relief') }}"><a href="{{ url_for('quick_relief') }}">Quick Relief</a></li>
+                </ul>
+            </nav>
+                        
+>>>>>>> a79d98c (sympAI-Project)
             <div class="user-account">
                 {% if current_user.is_authenticated %}
                 <div class="user-profile" id="user-profile-toggle">
@@ -105,12 +116,20 @@
                         </div>
                     </div>
                     <ul class="dropdown-menu">
+<<<<<<< HEAD
                         <li><a href="#profile"><i class="fas fa-user"></i> My Profile</a></li>
                         <li><a href="#history"><i class="fas fa-history"></i> Health History</a></li>
                         <li><a href="#settings"><i class="fas fa-cog"></i> Settings</a></li>
                         <li class="divider"></li>
                         <li><a href="{{ url_for('logout') }}" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
                     </ul>
+=======
+                        <li><a href="{{ url_for('profile') }}"><i class="fas fa-user"></i> My Profile</a></li>
+                        <li><a href="{{ url_for('history') }}"><i class="fas fa-history"></i> Health History</a></li>
+                        <li class="divider"></li>
+                        <li><a href="{{ url_for('logout') }}" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                    </ul>                
+>>>>>>> a79d98c (sympAI-Project)
                 </div>
                 {% else %}
                 <div class="auth-buttons">
@@ -154,7 +173,11 @@
                         <li><a href="{{ url_for('index') }}">Home</a></li>
                         <li><a href="{{ url_for('disease_prediction') }}">Symptom Checker</a></li>
                         <li><a href="{{ url_for('diet_suggestion') }}">Personalized Diet</a></li>
+<<<<<<< HEAD
                         <li><a href="#care-near-you">Care Near You</a></li>
+=======
+                        <li><a href="/care-near-you">Care Near You</a></li>
+>>>>>>> a79d98c (sympAI-Project)
                     </ul>
                 </div>
                 <div class="footer-social">
